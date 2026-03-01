@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { prisma } from "../database/prisma.js";
-import { AppError } from "../utils/AppError.js";
+import { prisma } from "../database/prisma";
+import { AppError } from "../utils/AppError";
 
 export class DeliveryLogsController {
 

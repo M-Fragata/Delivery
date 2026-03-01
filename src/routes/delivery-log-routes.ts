@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { DeliveryLogsController } from "../controller/delivery-logs-controller.js"
+import { DeliveryLogsController } from "../controller/Delivery-Logs-Controller"
 
-import { authorization } from "../middlewares/authorizatedHandling.js";
-import { authenticated } from "../middlewares/authenticatedHandling.js";
+import { authorization } from "../middlewares/authorizatedHandling";
+import { authenticated } from "../middlewares/authenticatedHandling";
 
 const deliveryLogsRoutes = Router()
 const deliveryLogsController = new DeliveryLogsController

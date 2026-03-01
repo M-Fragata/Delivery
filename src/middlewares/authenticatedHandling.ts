@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken"
-import { authConfig } from "../configs/auth.js";
-import { AppError } from "../utils/AppError.js";
+import { authConfig } from "../configs/auth";
+import { AppError } from "../utils/AppError";
 
 type TokenPayloud = {
     role: string,

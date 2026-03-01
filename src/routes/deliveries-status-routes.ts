@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { DeliveriesStatusController } from "../controller/Deliveries-Status-Controller.js"
-import { authenticated } from "../middlewares/authenticatedHandling.js"
-import { authorization } from "../middlewares/authorizatedHandling.js"
+import { DeliveriesStatusController } from "../controller/Deliveries-Status-Controller"
+import { authenticated } from "../middlewares/authenticatedHandling"
+import { authorization } from "../middlewares/authorizatedHandling"
 
 const deliveriesStatusRoutes = Router()
 const deliveriesStatusController = new DeliveriesStatusController

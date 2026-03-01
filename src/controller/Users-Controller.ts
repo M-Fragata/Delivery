@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { prisma } from "../database/prisma.js"
+import { prisma } from "../database/prisma"
 import { z } from "zod"
 import { hash } from "bcrypt"
-import { AppError } from "../utils/AppError.js";
+import { AppError } from "../utils/AppError";
 
 export class UsersController {
     async index(req: Request, res: Response) {
