@@ -59,10 +59,11 @@ export class UsersController {
         const { name, email } = bodySchema.parse(req.body)
         const { role } = req.body
 
-        if (role != "sale" || role != "customer") {
+        console.log(typeof(role))
+
+        if (role !== "sale" && role !== "customer") {
             throw new AppError("Role desconhecida")
         }
-
 
         if (!id) {
             throw new AppError("ID não encontrado", 404)
@@ -90,12 +91,16 @@ export class UsersController {
 
         const { id } = paramsSchema.parse(req.params)
 
-        if (!id) {
+        const user = await prisma.user.findUnique({where: {
+            id
+        }})
+
+        if (!user) {
             throw new AppError("ID não encontrado", 404)
         }
 
         await prisma.user.delete({
-            where: { id }
+            where: { id: user.id }
         })
 
         return res.status(204).json()
