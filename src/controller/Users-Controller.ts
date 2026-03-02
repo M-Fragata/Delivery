@@ -56,10 +56,10 @@ export class UsersController {
         })
 
         const { id } = paramsSchema.parse(req.params)
-        const { name, email} = bodySchema.parse(req.body)
+        const { name, email } = bodySchema.parse(req.body)
         const { role } = req.body
 
-        if(role !== "sale" || role !== "customer") {
+        if (role !== "sale" || role !== "customer") {
             throw new AppError("Role desconhecida")
         }
 
@@ -69,12 +69,13 @@ export class UsersController {
         }
 
         await prisma.user.update({
-            data: {
-                name, email, role
-            },
             where: {
                 id
+            },
+            data: {
+                name, email, role
             }
+
         })
 
         return res.status(200).json()
