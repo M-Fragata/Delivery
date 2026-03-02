@@ -52,11 +52,17 @@ export class UsersController {
 
         const bodySchema = z.object({
             "name": z.string().min(3),
-            "email": z.string().email()
+            "email": z.string().email(),
         })
 
         const { id } = paramsSchema.parse(req.params)
-        const { name, email } = bodySchema.parse(req.body)
+        const { name, email} = bodySchema.parse(req.body)
+        const { role } = req.body
+
+        if(role !== "sale" || role !== "customer") {
+            throw new AppError("Role desconhecida")
+        }
+
 
         if (!id) {
             throw new AppError("ID não encontrado", 404)
@@ -64,7 +70,7 @@ export class UsersController {
 
         await prisma.user.update({
             data: {
-                name, email
+                name, email, role
             },
             where: {
                 id
