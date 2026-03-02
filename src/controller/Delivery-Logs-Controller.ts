@@ -13,6 +13,7 @@ export class DeliveryLogsController {
 
         const { id } = paramsSchema.parse(req.params)
 
+
         const delivery = await prisma.delivery.findUnique({
             where: {
                 id
@@ -26,6 +27,10 @@ export class DeliveryLogsController {
                 }
             }
         })
+
+        if(!delivery){
+            throw new AppError("Delivery not found", 404)
+        }
 
         if (req.user?.role === "customer" && req.user.id !== delivery?.userId) {
             throw new AppError("The user can only view their deliveries", 401)
