@@ -68,5 +68,4 @@ export class DeliveryLogsController {
         return res.status(201).json()
     }
 
-    async put(req: Request, res: Response) { }
 }
