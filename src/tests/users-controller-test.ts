@@ -10,13 +10,14 @@ describe("UsersController", () => {
     afterAll(async () => {
         await prisma.user.delete({ where: { id: user_id } })
         user_id = ""
+        
     })
 
     it("should create a new user sucessfully", async () => {
 
         const response = await request(app).post("/users").send({
             name: "Test User",
-            email: "testuser@example.com",
+            email: "test1user@example.com",
             password: "test123"
         })
 
@@ -31,7 +32,7 @@ describe("UsersController", () => {
 
         const response = await request(app).post("/users").send({
             name: "Test duplicate User",
-            email: "testuser@example.com",
+            email: "test1user@example.com",
             password: "test123"
         })
 
@@ -47,7 +48,9 @@ describe("UsersController", () => {
             password: "test123"
         })
 
-        
+        expect(response.statusCode).toBe(400)
+        expect(response.body.message).toBe("Validation Error")
+
 
     })
 })
