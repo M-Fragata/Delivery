@@ -20,10 +20,7 @@ const config: Config = {
   ],
 
   moduleNameMapper: {
-    // Isso remove o .js de QUALQUER import que termine assim
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-    // Caso o erro persista em arquivos de subpastas, use esta:
-    '^(.+)\\.js$': '$1',
+    '^(\\.{1,2}/.*)\\.js$': '$1'
   },
 
   transform: {
