@@ -59,7 +59,7 @@ export class UsersController {
         const { name, email } = bodySchema.parse(req.body)
         const { role } = req.body
 
-        if (role !== "sale" || role !== "customer") {
+        if (role != "sale" || role != "customer") {
             throw new AppError("Role desconhecida")
         }
 
