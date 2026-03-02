@@ -44,7 +44,36 @@ export class UsersController {
 
     }
 
-    async update(req: Request, res: Response) { }
+    async update(req: Request, res: Response) {
+
+        const paramsSchema = z.object({
+            "id": z.string().uuid()
+        })
+
+        const bodySchema = z.object({
+            "name": z.string().min(3),
+            "email": z.string().email()
+        })
+
+        const { id } = paramsSchema.parse(req.params)
+        const { name, email } = bodySchema.parse(req.body)
+
+        if (!id) {
+            throw new AppError("ID não encontrado", 404)
+        }
+
+        await prisma.user.update({
+            data: {
+                name, email
+            },
+            where: {
+                id
+            }
+        })
+
+        return res.status(200).json()
+
+    }
 
     async remove(req: Request, res: Response) {
 
@@ -54,12 +83,12 @@ export class UsersController {
 
         const { id } = paramsSchema.parse(req.params)
 
-        if(!id) {
+        if (!id) {
             throw new AppError("ID não encontrado", 404)
         }
 
-        await prisma.user.delete({ 
-            where: {id}
+        await prisma.user.delete({
+            where: { id }
         })
 
         return res.status(204).json()
