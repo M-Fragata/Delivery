@@ -34,7 +34,7 @@ export class SessionsController {
             role: user.role,
         }, secret, {
             subject: user.id,
-            expiresIn: expiresIn
+            expiresIn: expiresIn as any
         })
 
         const {password: hashedPassword, ...userWithoutPassword} = user
